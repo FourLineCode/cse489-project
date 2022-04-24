@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    style="@style/loginParent"
+    >
+    <ScrollView
+        style="@style/parent">
+
+        <RelativeLayout
+            style="@style/parent">
+
+
+            <LinearLayout
+                android:id="@+id/LAYOUT_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:weightSum="12">
+
+                <LinearLayout
+                    style="@style/parent"
+                    android:background="@drawable/login_shape_bk"
+                    android:orientation="vertical"
+                    android:layout_weight="3">
+                    <ImageView
+                        style="@style/parent"
+                        android:background="@drawable/ic_login_bk"
+                        android:contentDescription="login background" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="         Total Stock Amount: "
+                            android:textStyle="bold"
+                            android:textAlignment="textEnd"/>
+                        <TextView
+                            android:id="@+id/Stockamount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="150000 ৳"
+                            android:textColor="#171717"
+                            android:textStyle="bold"
+                            android:textAlignment="textEnd"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="               Total Stock Sold: "
+                            android:textStyle="bold"
+                            android:textAlignment="textEnd"/>
+                        <TextView
+                            android:id="@+id/Soldamount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="150000 ৳"
+                            android:textColor="#171717"
+                            android:textStyle="bold"
+                            android:textAlignment="textEnd"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="              Number Of Items: "
+                            android:textStyle="bold"
+                            android:textAlignment="textEnd"/>
+                        <TextView
+                            android:id="@+id/numberofitems"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#171717"
+                            android:textStyle="bold"
+                            android:textAlignment="textEnd"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp">
+
+
+                <TextView
+                    style="@style/headerText"
+                    android:layout_gravity="center"
+                    android:text="Items Sold"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:textColor="#FFFFFF"/>
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/LAYOUT_1"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="30dp" />
+
+            <Button
+                android:id="@+id/addNew"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/recyclerview"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20dp"
+                android:text="BAck"
+                android:background="@drawable/login_button_bk" />"
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
+
+
