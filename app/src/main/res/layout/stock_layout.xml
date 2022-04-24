@@ -2,14 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     style="@style/loginParent"
-    >
-    <ScrollView
-        style="@style/parent">
+    android:orientation="vertical">
 
-        <RelativeLayout
-            style="@style/parent">
+    <ScrollView
+        style="@style/parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout style="@style/parent">
 
 
             <LinearLayout
@@ -21,71 +22,81 @@
 
                 <LinearLayout
                     style="@style/parent"
+                    android:layout_weight="3"
                     android:background="@drawable/login_shape_bk"
-                    android:orientation="vertical"
-                    android:layout_weight="3">
+                    android:orientation="vertical">
+
                     <ImageView
                         style="@style/parent"
                         android:background="@drawable/ic_login_bk"
                         android:contentDescription="login background" />
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="         Total Stock Amount: "
-                            android:textStyle="bold"
-                            android:textAlignment="textEnd"/>
+                            android:textAlignment="textEnd"
+                            android:textStyle="bold" />
+
                         <TextView
                             android:id="@+id/Stockamount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="150000 ৳"
+                            android:textAlignment="textEnd"
                             android:textColor="#171717"
-                            android:textStyle="bold"
-                            android:textAlignment="textEnd"/>
+                            android:textStyle="bold" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="               Total Stock Sold: "
-                            android:textStyle="bold"
-                            android:textAlignment="textEnd"/>
+                            android:textAlignment="textEnd"
+                            android:textStyle="bold" />
+
                         <TextView
                             android:id="@+id/Soldamount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="150000 ৳"
+                            android:textAlignment="textEnd"
                             android:textColor="#171717"
-                            android:textStyle="bold"
-                            android:textAlignment="textEnd"/>
+                            android:textStyle="bold" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="              Number Of Items: "
-                            android:textStyle="bold"
-                            android:textAlignment="textEnd"/>
+                            android:textAlignment="textEnd"
+                            android:textStyle="bold" />
+
                         <TextView
                             android:id="@+id/numberofitems"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0"
+                            android:textAlignment="textEnd"
                             android:textColor="#171717"
-                            android:textStyle="bold"
-                            android:textAlignment="textEnd"/>
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
@@ -98,20 +109,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
-                android:orientation="vertical"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="30dp"
-                android:layout_marginLeft="30dp">
+                android:orientation="vertical">
 
 
                 <TextView
                     style="@style/headerText"
                     android:layout_gravity="center"
-                    android:text="Homepage"
                     android:layout_marginTop="40dp"
                     android:fontFamily="sans-serif-condensed-medium"
-                    android:textColor="#FFFFFF"/>
-         </LinearLayout>
+                    android:text="Homepage"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview"
@@ -123,17 +134,20 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="30dp" />
 
-            <Button
-                android:id="@+id/addNew"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_below="@+id/recyclerview"
-                android:layout_alignParentEnd="true"
-                android:background="@drawable/ic_baseline_add_circle_24"
-                android:layout_marginEnd="20dp"/>"
+
         </RelativeLayout>
 
     </ScrollView>
+
+    <Button
+        android:id="@+id/addNew"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/ic_baseline_add_circle_24" />
 
 </RelativeLayout>
 
