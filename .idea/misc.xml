@@ -4,8 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.35104166666666664" />
+        <entry key="app/src/main/res/layout/adapter_view.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/add_products.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/item_sold.xml" value="0.35104166666666664" />
         <entry key="app/src/main/res/layout/layout_login.xml" value="0.35104166666666664" />
         <entry key="app/src/main/res/layout/layout_register.xml" value="0.35104166666666664" />
+        <entry key="app/src/main/res/layout/spinner_item.xml" value="0.35104166666666664" />
         <entry key="app/src/main/res/layout/stock_layout.xml" value="0.35104166666666664" />
       </map>
     </option>

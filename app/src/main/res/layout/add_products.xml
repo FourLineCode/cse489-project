@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    style="@style/loginParent">
+    style="@style/loginParent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/LAYOUT_1"
@@ -33,157 +33,176 @@
 
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center">
+
         <ImageView
-            android:id="@+id/ImageView"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:id="@+id/productImage"
+            android:layout_width="150dp"
+            android:layout_height="120dp"
             android:layout_below="@id/LAYOUT_1"
+            android:layout_gravity="center"
+            android:layout_margin="30dp"
+            android:src="@drawable/noimage"
             android:text="Item Name :"
             android:textSize="20dp"
-            android:textStyle="bold"
-            android:src="@drawable/noimage"
-            android:layout_margin="30dp"
-            android:layout_gravity="center_vertical"/>
-
-
+            android:textStyle="bold" />
 
 
     </LinearLayout>
-    <LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-    <TextView
-        android:id="@+id/ItemnameText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/LAYOUT_1"
-        android:text="Item Name :"
-        android:layout_marginLeft="30dp"
-        android:textSize="20dp"
-        android:textStyle="bold"/>
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        />
 
-
-</LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/ItemnameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/LAYOUT_1"
+            android:layout_marginLeft="30dp"
+            android:text="Item Name :"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/productNameSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/QuantityText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/LAYOUT_1"
-            android:text="     Quantity :"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="30dp"
+            android:text="     Quantity :"
             android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <EditText
+            android:id="@+id/productQuantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:hint="Input Quantity (In Pcs)"
+            android:layout_marginLeft="12dp"
             android:layout_marginTop="12dp"
-            android:layout_marginLeft="12dp"/>
+            android:hint="Input Quantity (In Pcs)"
+            android:inputType="number" />
 
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
             android:id="@+id/PriceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/LAYOUT_1"
-            android:text="           Price :"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="30dp"
+            android:text="           Price :"
             android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <TextView
-            android:id="@+id/Price"
+            android:id="@+id/productPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="15dp"
             android:text="0"
             android:textSize="20dp"
-            android:textStyle="italic"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/takasign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="12dp"/>
-    <TextView
-        android:id="@+id/takasign"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="৳"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColor="#85bb65"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="5dp"/>
+            android:text="৳"
+            android:textColor="#85bb65"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
             android:id="@+id/productIdText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/LAYOUT_1"
-            android:text=" Product Id :"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="30dp"
+            android:text=" Product Id :"
             android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <TextView
+            android:id="@+id/productId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text=""
-            android:textSize="20dp"
+            android:layout_marginLeft="12dp"
             android:layout_marginTop="12dp"
-            android:layout_marginLeft="12dp"/>
+            android:text=""
+            android:textSize="20dp" />
 
 
     </LinearLayout>
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_marginTop="90dp">
-<Button
-    android:id="@+id/SaveButton"
-    android:layout_width="0dp"
-    android:layout_weight="10"
-    android:layout_height="wrap_content"
-    android:layout_margin="30dp"
-    android:background="@drawable/login_button_bk"
-    android:text="Save"/>
 
-    <Button
-        android:id="@+id/BackButton"
-        android:layout_width="0dp"
-        android:layout_weight="10"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:background="@drawable/login_button_bk"
-        android:text="Back"/>
+        android:layout_marginTop="90dp"
+        android:orientation="horizontal">
 
-</LinearLayout>
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:layout_weight="10"
+            android:background="@drawable/login_button_bk"
+            android:text="Save" />
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:layout_weight="10"
+            android:background="@drawable/login_button_bk"
+            android:text="Back" />
+
+    </LinearLayout>
 
 </LinearLayout>

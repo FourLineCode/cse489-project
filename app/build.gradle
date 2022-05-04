@@ -32,6 +32,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
     // Import the Firebase BoM
     implementation platform('com.google.firebase:firebase-bom:29.3.1')
 
