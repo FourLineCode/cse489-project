@@ -15,15 +15,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class AddProductActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -34,6 +38,8 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
 
     ArrayList<Map<String, Object>> products = new ArrayList();
     ArrayList<String> names = new ArrayList();
+    int selectedIndex = 0;
+
 
     Spinner spinner;
     TextView productId;
@@ -85,12 +91,37 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
                 return;
             }
 
+            Map<String, Object> selectedProduct = products.get(selectedIndex);
 
+            Map<String, Object> item = new HashMap<>();
+            item.put("productId", ((Long) selectedProduct.get("id")));
+            item.put("productName", selectedProduct.get("name").toString());
+            item.put("productPrice", Double.parseDouble(selectedProduct.get("price").toString()));
+            item.put("productImageUrl", selectedProduct.get("imageUrl").toString());
+            item.put("quantity", Integer.parseInt(q));
+            item.put("ownerId", currentUser.getUid());
+
+            db.collection("stocks")
+                    .add(item)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            finish();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(AddProductActivity.this, "Couldn't add item", Toast.LENGTH_LONG).show();
+                            finish();
+                        }
+                    });
         });
     }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        selectedIndex = i;
         productId.setText(products.get(i).get("id").toString());
         productPrice.setText(products.get(i).get("price").toString());
         Picasso.get().load(products.get(i).get("imageUrl").toString()).into(productImage);

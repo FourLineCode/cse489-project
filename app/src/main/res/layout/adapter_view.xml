@@ -8,7 +8,7 @@
     android:padding="10dp">
 
     <ImageView
-        android:id="@+id/ProductImage"
+        android:id="@+id/stockImage"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_gravity="center"
@@ -25,14 +25,14 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/ProductNo"
+                android:id="@+id/stockNo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:text="1" />
 
             <TextView
-                android:id="@+id/ProductName"
+                android:id="@+id/stockName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -53,7 +53,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/Quantity"
+                android:id="@+id/stockQuantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -73,7 +73,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/Price"
+                android:id="@+id/stockPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -93,7 +93,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/productId"
+                android:id="@+id/stockProductId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"

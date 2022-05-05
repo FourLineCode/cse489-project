@@ -2,15 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/loginParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <ScrollView
-        style="@style/parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout style="@style/parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
             <LinearLayout
@@ -34,6 +36,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -44,10 +47,10 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/Stockamount"
+                            android:id="@+id/stockamount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="150000 ৳"
+                            android:text="0.0 ৳"
                             android:textAlignment="textEnd"
                             android:textColor="#171717"
                             android:textStyle="bold" />
@@ -67,10 +70,10 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/Soldamount"
+                            android:id="@+id/soldamount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="150000 ৳"
+                            android:text="0.0 ৳"
                             android:textAlignment="textEnd"
                             android:textColor="#171717"
                             android:textStyle="bold" />
@@ -80,6 +83,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -125,7 +129,7 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerview"
+                android:id="@+id/stockList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/LAYOUT_1"
