@@ -102,7 +102,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="12dp"
-            android:hint="Input Quantity (In Pcs)"
+            android:hint="Input Quantity (In Cases)"
             android:inputType="number" />
 
 

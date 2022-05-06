@@ -69,13 +69,14 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         if(productIdExtra != null) {
             this.stockProductId = productIdExtra;
 
-            db.collection("stocks").whereEqualTo("productId", Long.parseLong(this.stockProductId)).limit(1).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            db.collection("stocks").whereEqualTo("productId", Long.parseLong(this.stockProductId)).whereEqualTo("ownerId", currentUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     try {
                         DocumentSnapshot doc = task.getResult().getDocuments().get(0);
 
                         editing = true;
+                        spinner.setEnabled(false);
                         quantity.setText(doc.getData().get("quantity").toString());
 
                         docId = doc.getId();
@@ -167,7 +168,9 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         productPrice.setText(products.get(i).get("price").toString());
         Picasso.get().load(products.get(i).get("imageUrl").toString()).into(productImage);
 
-        db.collection("stocks").whereEqualTo("productId", products.get(i).get("id")).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        prevQuantity = 0;
+        docId = null;
+        db.collection("stocks").whereEqualTo("productId", products.get(i).get("id")).whereEqualTo("ownerId", currentUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 try {

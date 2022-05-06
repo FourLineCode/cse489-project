@@ -1,6 +1,8 @@
 package cse489.ewubd.mini_project;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +12,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -21,6 +31,9 @@ public class StockListAdapter extends RecyclerView.Adapter<StockListAdapter.View
 
     private Context context;
     private ArrayList<Map<String, Object>> stocks;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
     public StockListAdapter(Context ctx, ArrayList<Map<String, Object>> stocks) {
         this.context = ctx;
@@ -60,7 +73,7 @@ public class StockListAdapter extends RecyclerView.Adapter<StockListAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull StockListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull StockListAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Map<String, Object> stock = this.stocks.get(position);
 
         holder.no.setText(String.valueOf(position + 1));
@@ -75,6 +88,33 @@ public class StockListAdapter extends RecyclerView.Adapter<StockListAdapter.View
             i.putExtra("productId", stock.get("productId").toString());
             i.putExtra("index", stock.get("itemIndex").toString());
             StockListAdapter.this.context.startActivity(i);
+        });
+
+        holder.itemView.setOnLongClickListener(view -> {
+            new AlertDialog.Builder(context)
+                    .setTitle("Delete Item")
+                    .setMessage("Are you sure you want to delete this item?")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            db.collection("stocks").whereEqualTo("ownerId", currentUser.getUid()).whereEqualTo("productId", stock.get("productId")).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    try {
+                                        DocumentSnapshot doc = task.getResult().getDocuments().get(0);
+                                        db.collection("stocks").document(doc.getId()).delete();
+                                        StockListAdapter.this.stocks.remove(position);
+                                        StockListAdapter.this.notifyDataSetChanged();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+            return false;
         });
     }
 
