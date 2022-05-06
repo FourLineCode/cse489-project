@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -47,6 +48,9 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
     ImageView productImage;
     EditText quantity;
 
+    String stockProductId = null;
+    String docId = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +61,27 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         productPrice = findViewById(R.id.productPrice);
         productImage = findViewById(R.id.productImage);
         quantity = findViewById(R.id.productQuantity);
+
+        String index = getIntent().getStringExtra("index");
+        String productIdExtra = getIntent().getStringExtra("productId");
+        if(productIdExtra != null) {
+            this.stockProductId = productIdExtra;
+
+            db.collection("stocks").whereEqualTo("productId", Long.parseLong(this.stockProductId)).limit(1).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    try {
+                        DocumentSnapshot doc = task.getResult().getDocuments().get(0);
+
+                        quantity.setText(doc.getData().get("quantity").toString());
+
+                        docId = doc.getId();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
 
         db.collection("products")
                 .get()
@@ -74,6 +99,11 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
                             aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             spinner.setAdapter(aa);
                             spinner.setOnItemSelectedListener(AddProductActivity.this);
+
+                            if(index != null) {
+                                System.out.println(index);
+                                spinner.setSelection(Integer.parseInt(index));
+                            }
                         } else {
                             System.out.println("Error getting firebase data");
                         }
@@ -100,12 +130,16 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
             item.put("productImageUrl", selectedProduct.get("imageUrl").toString());
             item.put("quantity", Integer.parseInt(q));
             item.put("ownerId", currentUser.getUid());
+            item.put("itemIndex", selectedIndex);
 
             db.collection("stocks")
                     .add(item)
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
+                            if(docId != null) {
+                                db.collection("stocks").document(docId).delete();
+                            }
                             finish();
                         }
                     })
@@ -129,6 +163,6 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
+        return;
     }
 }

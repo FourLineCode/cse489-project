@@ -1,6 +1,7 @@
 package cse489.ewubd.mini_project;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +69,13 @@ public class StockListAdapter extends RecyclerView.Adapter<StockListAdapter.View
         holder.quantity.setText(stock.get("quantity").toString());
         holder.productId.setText(stock.get("productId").toString());
         Picasso.get().load(stock.get("productImageUrl").toString()).into(holder.image);
+
+        holder.itemView.setOnClickListener(view -> {
+            Intent i = new Intent(StockListAdapter.this.context, AddProductActivity.class);
+            i.putExtra("productId", stock.get("productId").toString());
+            i.putExtra("index", stock.get("itemIndex").toString());
+            StockListAdapter.this.context.startActivity(i);
+        });
     }
 
     @Override
