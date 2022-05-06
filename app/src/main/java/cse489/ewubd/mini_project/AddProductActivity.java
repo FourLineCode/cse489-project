@@ -50,6 +50,8 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
 
     String stockProductId = null;
     String docId = null;
+    boolean editing = false;
+    long prevQuantity = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,7 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
                     try {
                         DocumentSnapshot doc = task.getResult().getDocuments().get(0);
 
+                        editing = true;
                         quantity.setText(doc.getData().get("quantity").toString());
 
                         docId = doc.getId();
@@ -128,7 +131,11 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
             item.put("productName", selectedProduct.get("name").toString());
             item.put("productPrice", Double.parseDouble(selectedProduct.get("price").toString()));
             item.put("productImageUrl", selectedProduct.get("imageUrl").toString());
-            item.put("quantity", Integer.parseInt(q));
+            long quan = Integer.parseInt(q);
+            if(!editing) {
+                quan += prevQuantity;
+            }
+            item.put("quantity", quan);
             item.put("ownerId", currentUser.getUid());
             item.put("itemIndex", selectedIndex);
 
@@ -159,6 +166,20 @@ public class AddProductActivity extends AppCompatActivity implements AdapterView
         productId.setText(products.get(i).get("id").toString());
         productPrice.setText(products.get(i).get("price").toString());
         Picasso.get().load(products.get(i).get("imageUrl").toString()).into(productImage);
+
+        db.collection("stocks").whereEqualTo("productId", products.get(i).get("id")).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                try {
+                    DocumentSnapshot doc = task.getResult().getDocuments().get(0);
+                    prevQuantity = (Long) doc.get("quantity");
+
+                    docId = doc.getId();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @Override

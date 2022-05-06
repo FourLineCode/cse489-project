@@ -73,7 +73,7 @@ public class StockActivity extends AppCompatActivity {
                             list.setAdapter(adapter);
 
                             items.setText(String.valueOf(stocks.size()));
-                            amount.setText(String.valueOf(totalAmount) + " ৳");
+                            amount.setText(String.valueOf(String.format("%.2f", totalAmount)) + " ৳");
                         } else {
                             Toast.makeText(StockActivity.this, "Error getting stocks", Toast.LENGTH_LONG).show();
                         }
